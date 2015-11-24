@@ -8,6 +8,7 @@ angular.module('mxl', [])
 })
 .directive('mxlExpression', function ($timeout, $q, mxlModes) {
     return {
+        templateUrl: 'statics/mxl-template.html',
         require: ["^ngModel"],
         scope:
             {
@@ -22,9 +23,9 @@ angular.module('mxl', [])
         link: function ($scope, $element, $attrs, ctrl) {
             function newCodemirrorEditor($element, codemirrorOptions) {
                 var codemirror;
-                $element.html('');
+                var editor = $element.find('editor');
                 codemirror = new window.CodeMirror(function (cm_el) {
-                    $element.append(cm_el);
+                    editor.append(cm_el);
                     if ($attrs.class) {
                         cm_el.classList.add($attrs.class);
                     }
